@@ -1,0 +1,927 @@
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.28);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.top-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+select, input {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  outline: none;
+  transition: 0.2s;
+}
+
+select:focus, input:focus {
+  border-color: rgba(59,130,246,0.55);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 14px 0 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transition: width 0.35s ease;
+}
+
+ul { list-style: none; padding: 0; margin: 0; }
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 10px;
+}
+
+li input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+.add-task {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.add-task input { flex: 1; }
+
+button {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(59,130,246,0.20);
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  background: rgba(59,130,246,0.28);
+  border-color: rgba(59,130,246,0.35);
+}
+/* ===== Dropdown custom (dark, estilo SaaS) ===== */
+.dd { position: relative; width: min(360px, 100%); }
+
+.dd-btn{
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  cursor:pointer;
+  transition: 0.2s;
+}
+
+.dd-btn:hover{
+  border-color: rgba(59,130,246,0.35);
+  background: rgba(59,130,246,0.08);
+}
+
+.dd.open .dd-btn{
+  border-color: rgba(59,130,246,0.55);
+}
+
+.dd-caret{ opacity: .8; }
+
+.dd-menu{
+  display:none;
+  position:absolute;
+  top: calc(100% + 8px);
+  left:0;
+  width:100%;
+  max-height: 260px;
+  overflow:auto;
+  z-index: 50;
+
+  background: rgba(15, 23, 42, 0.95);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:14px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+}
+
+.dd.open .dd-menu{ display:block; }
+
+.dd-item{
+  width:100%;
+  text-align:left;
+  border:none;
+  background: transparent;
+  color: rgba(226,232,240,0.9);
+  padding: 10px 10px;
+  border-radius: 12px;
+  cursor:pointer;
+  transition: 0.15s;
+}
+
+.dd-item:hover{
+  background: rgba(255,255,255,0.06);
+}
+
+.dd-item.active{
+  background: rgba(59,130,246,0.18);
+  outline: 1px solid rgba(59,130,246,0.35);
+  color: var(--text);
+}
+
+@media (max-width: 520px){
+  .top-controls{ flex-direction: column; }
+  .dd{ width: 100%; }
+}
+/* ===== Busca ===== */
+.search-row{
+  display:flex;
+  gap:10px;
+  margin: 10px 0 6px;
+}
+#searchInput{ flex:1; }
+#clearSearchBtn{
+  width:44px;
+  display:flex;align-items:center;justify-content:center;
+  opacity:.85;
+}
+
+/* ===== Notas ===== */
+.notes{
+  margin-top:16px;
+  padding-top:14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.notes-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+.notes h3{ margin:0; font-size:14px; opacity:.95; }
+.notes-saved{ font-size:12px; opacity:.7; }
+
+#weekNotes{
+  width:100%;
+  min-height: 120px;
+  resize: vertical;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+}
+
+/* ===== Itens tarefa + deletar extra ===== */
+.task-row{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.task-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.task-title{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.badge-extra{
+  font-size:11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.14);
+  border: 1px solid rgba(59,130,246,0.26);
+  opacity: .95;
+}
+.btn-del{
+  width:36px;
+  height:36px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  cursor:pointer;
+  transition: .2s;
+}
+.btn-del:hover{
+  border-color: rgba(239,68,68,0.35);
+  background: rgba(239,68,68,0.12);
+}
+
+/* ===== Progresso (aba) ===== */
+.progress-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-top:12px;
+}
+.panel{
+  padding:14px;
+  border-radius:16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.panel h3{ margin:0 0 10px 0; font-size:14px; opacity:.95; }
+
+.summary{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  font-size:14px;
+  opacity:.9;
+}
+
+.listbox{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.item{
+  padding:10px 12px;
+  border-radius:14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.item small{ opacity:.7; font-size:12px; }
+
+@media (max-width: 900px){
+  .progress-grid{ grid-template-columns: 1fr; }
+}
+/* ===== Abas: garante que só a ativa aparece ===== */
+.tab-content { display: none !important; }
+.tab-content.active { display: block !important; }
+/* ===== Progresso: tirar espaço morto ===== */
+.progress-grid{
+  align-items: start;
+}
+
+.panel{
+  height: fit-content;
+}
+
+.summary{
+  padding-bottom: 6px;
+}
+
+/* deixa o Resumo mais compacto */
+#summaryBox{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+/* opcional: melhora aparência dos painéis vazios */
+.listbox:empty::after{
+  content: "Nada aqui ainda.";
+  opacity: 0.6;
+  font-size: 13px;
+}
+.summary div{
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+/* ===== Grid Progresso (layout certo) ===== */
+.progress-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "resumo pendencias"
+    "concluidas pendencias"
+    "anotacoes pendencias";
+  gap: 18px;
+  align-items: start;
+}
+
+.progress-grid .panel:nth-child(1){ grid-area: resumo; }
+.progress-grid .panel:nth-child(2){ grid-area: pendencias; }
+.progress-grid .panel:nth-child(3){ grid-area: concluidas; }
+.progress-grid .panel:nth-child(4){ grid-area: anotacoes; }
+
+/* pendências sempre grande */
+.progress-grid .panel:nth-child(2){
+  min-height: 520px;
+}
+/* ===== Responsivo (celular) ===== */
+@media (max-width: 900px){
+  .progress-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "resumo"
+      "pendencias"
+      "concluidas"
+      "anotacoes";
+  }
+
+  .progress-grid .panel:nth-child(2){
+    min-height: auto;
+  }
+}
+@media (max-width: 820px){
+  #weekNotes{
+    min-height: 140px;
+  }
+}
+/* ===== Mobile: pendências com scroll interno ===== */
+@media (max-width: 820px){
+  /* a caixa de pendências fica com altura boa no celular */
+  #progresso .panel:nth-child(2) .listbox{
+    max-height: 360px;      /* ajuste se quiser: 300~450 */
+    overflow: auto;
+    padding-right: 6px;
+  }
+
+  /* scrollbar mais discreta (Chrome) */
+  #progresso .panel:nth-child(2) .listbox::-webkit-scrollbar{
+    width: 8px;
+  }
+  #progresso .panel:nth-child(2) .listbox::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,0.10);
+    border-radius: 999px;
+  }
+}
+/* ===== Streak pill ===== */
+.streak-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  font-weight: 700;
+  opacity: .95;
+  white-space: nowrap;
+}
+
+.streak-sub{
+  font-weight: 600;
+  opacity: .75;
+  font-size: 12px;
+}
+
+@media (max-width: 820px){
+  .streak-pill{
+    padding: 7px 10px;
+    gap:6px;
+  }
+  .streak-sub{
+    display:none; /* no mobile fica só 🔥 3 */
+  }
+}
+/* ===== Animações suaves ===== */
+.card, .panel{
+  animation: popIn .25s ease;
+}
+
+@keyframes popIn{
+  from{ opacity:0; transform: translateY(10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+.menu-item, button, .dd-btn, .btn-del, input, textarea{
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.menu-item:hover, button:hover, .dd-btn:hover{
+  transform: translateY(-1px);
+}
+
+li{
+  animation: fadeRow .18s ease;
+}
+
+@keyframes fadeRow{
+  from{ opacity:0; transform: translateY(6px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* respeita "reduzir movimento" */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
+/* ===== Hover Premium (mouse) ===== */
+
+.card, .panel{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.card:hover, .panel:hover{
+  transform: translateY(-2px);
+  border-color: rgba(59,130,246,0.25);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.35);
+}
+
+/* itens do menu */
+.menu-item{
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+
+.menu-item:hover{
+  transform: translateX(4px);
+  background: rgba(59,130,246,0.12);
+  border-color: rgba(59,130,246,0.25);
+}
+
+/* dropdown */
+.dd-btn{
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+
+.dd-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(59,130,246,0.25);
+  background: rgba(59,130,246,0.08);
+}
+
+/* botões */
+button, .icon-btn{
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+button:hover, .icon-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* botão remover */
+.btn-del:hover{
+  transform: scale(1.08);
+  filter: brightness(1.2);
+}
+
+/* tarefas */
+#taskList li{
+  border-radius: 14px;
+  padding: 10px 12px;
+  transition: background .16s ease, transform .16s ease, border-color .16s ease;
+  border: 1px solid transparent;
+}
+
+#taskList li:hover{
+  transform: translateX(4px);
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.06);
+}
+
+/* input foco premium */
+input:focus, textarea:focus{
+  outline: none;
+  border-color: rgba(59,130,246,0.35) !important;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+}
+
+/* animação mais suave no progresso */
+.progress-fill{
+  transition: width .35s ease;
+}
+.notes-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.notes-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.btn-mini{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: var(--text);
+  padding: 7px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+.btn-mini:hover{
+  transform: translateY(-1px);
+  background: rgba(59,130,246,0.10);
+  border-color: rgba(59,130,246,0.25);
+}
+/* ===== Configurações ===== */
+.settings-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.settings-row{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.muted{
+  opacity: .75;
+  font-size: 13px;
+}
+
+.btn-mini.danger{
+  border-color: rgba(239,68,68,0.35) !important;
+}
+.btn-mini.danger:hover{
+  background: rgba(239,68,68,0.12) !important;
+  border-color: rgba(239,68,68,0.55) !important;
+}
+
+@media (max-width: 820px){
+  .settings-grid{
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== HOJE / Conquistas ===== */
+.today-grid{
+  display:grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap:16px;
+  margin-bottom: 16px;
+}
+
+.today-meta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin: 8px 0 10px;
+  opacity:.9;
+}
+
+.today-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom: 12px;
+}
+
+.today-lists{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+
+.today-box h4{
+  margin: 0 0 8px;
+  font-size: 14px;
+  opacity:.9;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border:1px solid var(--border);
+  background: var(--panel);
+  margin-bottom: 10px;
+}
+
+.badge .b-icon{
+  font-size: 18px;
+}
+.badge .b-title{
+  font-weight:800;
+}
+.badge .b-sub{
+  display:block;
+  opacity:.75;
+  font-size: 12px;
+}
+
+.badge.locked{
+  opacity:.55;
+  filter: grayscale(.2);
+}
+
+/* botões de ação nas tarefas */
+.task-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.btn-pin{
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px 8px;
+  cursor:pointer;
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+.btn-pin:hover{
+  transform: translateY(-1px);
+  background: rgba(59,130,246,0.10);
+  border-color: rgba(59,130,246,0.25);
+}
+
+/* ===== Calendário ===== */
+.cal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin: 10px 0 12px;
+}
+.cal-title{
+  font-weight:800;
+  opacity:.92;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.cal-dow{
+  font-size: 12px;
+  opacity: .7;
+  text-align:center;
+}
+.cal-day{
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 10px 10px;
+  min-height: 54px;
+  cursor:pointer;
+  transition: transform .16s ease, border-color .16s ease;
+}
+.cal-day:hover{
+  transform: translateY(-2px);
+  border-color: rgba(59,130,246,0.25);
+}
+.cal-day .n{
+  font-weight:800;
+  font-size: 13px;
+  opacity:.95;
+}
+.cal-day .dot{
+  margin-top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+}
+.cal-day.l1 .dot{ background: rgba(59,130,246,0.25); }
+.cal-day.l2 .dot{ background: rgba(59,130,246,0.45); }
+.cal-day.l3 .dot{ background: rgba(59,130,246,0.70); }
+.cal-day.l4 .dot{ background: rgba(59,130,246,0.95); }
+
+/* ===== Responsivo ===== */
+@media (max-width: 820px){
+  .today-grid{ grid-template-columns: 1fr; }
+  .today-lists{ grid-template-columns: 1fr; }
+}
+/* ===== Ajuste de proporção geral ===== */
+
+/* Estudos: HOJE + Conquistas mais compactos */
+.today-grid{
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+.today-grid .panel{
+  padding: 14px;
+}
+
+.today-meta{
+  margin: 6px 0 8px;
+  gap: 10px;
+  font-size: 13px;
+  opacity: .85;
+}
+
+.today-actions{
+  margin-bottom: 10px;
+}
+
+.today-lists{
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Caixas (Fixadas/Revisões) com altura máxima e scroll */
+.today-box .listbox{
+  max-height: 180px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+/* Conquistas: lista com scroll para não ficar gigante */
+#achievementsBox{
+  max-height: 320px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* Badge mais fino */
+.badge{
+  padding: 9px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+.badge .b-title{ font-size: 13px; }
+.badge .b-sub{ font-size: 11px; }
+
+/* ===== Progresso: calendário e gráfico menores ===== */
+
+/* Calendário: células mais compactas */
+.calendar{
+  gap: 6px;
+}
+
+.cal-day{
+  min-height: 44px;
+  padding: 8px 8px;
+}
+
+.cal-day .dot{
+  margin-top: 6px;
+  width: 8px;
+  height: 8px;
+}
+
+/* Gráfico: tira o “vazio” e deixa o canvas com altura boa */
+#studyChart{
+  width: 100%;
+  height: 130px;     /* altura visual */
+  display: block;
+}
+
+/* Painéis no Progresso com espaçamento mais elegante */
+#progresso .panel{
+  padding: 14px;
+}
+
+/* Responsivo: no mobile, HOJE e Conquistas viram 1 coluna e sem gigantismo */
+@media (max-width: 820px){
+  .today-lists{ grid-template-columns: 1fr; }
+  #achievementsBox{ max-height: 220px; }
+  .today-box .listbox{ max-height: 160px; }
+}
+/* Progresso: calendário estilo GitHub (compacto e limpo) */
+#progresso .calendar{
+  gap: 6px;
+}
+
+#progresso .cal-day{
+  min-height: 40px !important;
+  padding: 8px !important;
+  border-radius: 12px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#progresso .cal-day .n{
+  font-size: 12px;
+  opacity: .85;
+}
+
+#progresso .cal-day .dot{
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+/* tira “peso” visual no calendário */
+#progresso .cal-dow{
+  opacity: .55;
+  font-weight: 700;
+}
+/* ===== Accordion (Hoje / Conquistas) ===== */
+.accordion{
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.acc-head{
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.acc-title{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 900;
+}
+
+.acc-icon{
+  width: 34px;
+  height: 34px;
+  display:grid;
+  place-items:center;
+  border-radius: 12px;
+  background: rgba(59,130,246,0.10);
+  border: 1px solid rgba(59,130,246,0.20);
+}
+
+.acc-meta{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 800;
+  opacity: .9;
+}
+
+.acc-caret{
+  display:inline-block;
+  transition: transform .18s ease;
+  opacity:.8;
+}
+
+.acc-body{
+  padding: 0 14px 14px;
+  display: none;
+}
+
+.accordion.open .acc-body{
+  display:block;
+}
+
+.accordion.open .acc-caret{
+  transform: rotate(180deg);
+}
+
+/* deixa a grid menos “gorda” */
+.today-grid{
+  margin-bottom: 12px;
+}
+
+/* limita altura quando expandir */
+#achievementsBox{
+  max-height: 280px;
+  overflow: auto;
+  padding-right: 6px;
+}
+#todayPins, #todayReviews{
+  max-height: 180px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+@media (max-width: 820px){
+  #achievementsBox{ max-height: 220px; }
+  #todayPins, #todayReviews{ max-height: 160px; }
+}

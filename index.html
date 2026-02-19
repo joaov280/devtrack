@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevTrack</title>
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button id="toggleSidebar">☰</button>
+
+        <h2 class="logo">
+          <span class="logo-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M4 12.5L9.2 17.7L20 6.8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 20H20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="logo-text">DevTrack</span>
+        </h2>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-tab="estudos">
+          <span class="icon">📘</span>
+          <span class="label">Estudos</span>
+        </button>
+
+        <button class="menu-item" data-tab="progresso">
+          <span class="icon">📈</span>
+          <span class="label">Progresso</span>
+        </button>
+
+        <button class="menu-item" data-tab="config">
+          <span class="icon">⚙️</span>
+          <span class="label">Configurações</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+        <button id="mobileMenuBtn" class="icon-btn" aria-label="Abrir menu">☰</button>
+        <button id="themeToggle" class="icon-btn" aria-label="Alternar tema">🌙</button>
+
+        <div class="topbar-center">
+          <div class="brand">
+            <div class="brand-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4 12.5L9.2 17.7L20 6.8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 20H20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">DevTrack</span>
+              <span class="brand-subtitle">Roadmap Full Stack</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="streak-pill" id="streakPill" title="Dias seguidos estudando">
+          🔥 <span id="streakNow">0</span>
+          <span class="streak-sub">/ recorde <span id="streakBest">0</span></span>
+        </div>
+
+        <h1 id="pageTitle">Estudos</h1>
+      </header>
+
+      <section class="content">
+
+        <!-- ABA ESTUDOS -->
+        <!-- ABA ESTUDOS -->
+<div class="tab-content active" id="estudos">
+  <div class="card">
+
+    <!-- HOJE + CONQUISTAS (compacto/expandir) -->
+    <div class="today-grid">
+      <!-- Hoje -->
+      <div class="panel accordion open" id="todayAcc">
+        <button class="acc-head" id="todayAccBtn" type="button">
+          <div class="acc-title">
+            <span class="acc-icon">📌</span>
+            <span>Hoje</span>
+          </div>
+
+          <div class="acc-meta">
+            <span>🔥 <b id="todayStreak">0</b></span>
+            <span>✅ <b id="todayDone">0</b></span>
+            <span>🧠 <b id="todayDue">0</b></span>
+            <span class="acc-caret">▾</span>
+          </div>
+        </button>
+
+        <div class="acc-body" id="todayAccBody">
+          <div class="today-actions">
+            <button id="todayMarkStudyBtn" class="btn-mini" type="button">Marcar que estudei hoje</button>
+            <button id="todayClearPinsBtn" class="btn-mini danger" type="button">Limpar fixadas</button>
+          </div>
+
+          <div class="today-lists">
+            <div class="today-box">
+              <h4>⭐ Fixadas</h4>
+              <div id="todayPins" class="listbox"></div>
+            </div>
+
+            <div class="today-box">
+              <h4>🧠 Revisões de hoje</h4>
+              <div id="todayReviews" class="listbox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conquistas -->
+      <div class="panel accordion" id="achAcc">
+        <button class="acc-head" id="achAccBtn" type="button">
+          <div class="acc-title">
+            <span class="acc-icon">🏆</span>
+            <span>Conquistas</span>
+          </div>
+
+          <div class="acc-meta">
+            <span class="muted">Clique para abrir</span>
+            <span class="acc-caret">▾</span>
+          </div>
+        </button>
+
+        <div class="acc-body" id="achAccBody">
+          <div id="achievementsBox" class="listbox"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLES (MÊS/SEMANA) -->
+    <div class="top-controls">
+      <div class="dd" id="monthDD">
+        <button class="dd-btn" id="monthBtn" type="button">
+          <span id="monthLabel">Selecionar mês</span>
+          <span class="dd-caret">▾</span>
+        </button>
+        <div class="dd-menu" id="monthMenu"></div>
+      </div>
+
+      <div class="dd" id="weekDD">
+        <button class="dd-btn" id="weekBtn" type="button">
+          <span id="weekLabel">Selecionar semana</span>
+          <span class="dd-caret">▾</span>
+        </button>
+        <div class="dd-menu" id="weekMenu"></div>
+      </div>
+    </div>
+
+    <!-- BUSCA -->
+    <div class="search-row">
+      <input id="searchInput" type="text" placeholder="Pesquisar tarefas (ex: loops, arrays, React...)" />
+      <button id="clearSearchBtn" type="button" title="Limpar">✕</button>
+    </div>
+
+    <!-- PROGRESSO (barra) -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- LISTA DE TAREFAS -->
+    <ul id="taskList"></ul>
+
+    <!-- ADD TAREFA EXTRA -->
+    <div class="add-task">
+      <input type="text" id="newTaskInput" placeholder="Nova tarefa extra..." />
+      <button id="addTaskBtn">Adicionar</button>
+    </div>
+
+    <!-- ANOTAÇÕES -->
+    <div class="notes">
+      <div class="notes-head">
+        <h3>Anotações da semana</h3>
+
+        <div class="notes-actions">
+          <button id="saveNotesBtn" class="btn-mini" type="button">Salvar</button>
+          <span id="notesSaved" class="notes-saved"></span>
+        </div>
+      </div>
+
+      <textarea id="weekNotes" placeholder="Escreva aqui o que aprendeu, dúvidas, links, etc..."></textarea>
+    </div>
+
+  </div>
+</div>
+
+
+        <!-- ABA PROGRESSO -->
+        <div class="tab-content" id="progresso">
+          <div class="card">
+            <h2>Progresso</h2>
+
+<div class="panel">
+  <h3>Calendário de estudo</h3>
+  <div class="cal-head">
+    <button id="calPrev" class="btn-mini" type="button">◀</button>
+    <div class="cal-title" id="calTitle">---</div>
+    <button id="calNext" class="btn-mini" type="button">▶</button>
+  </div>
+  <div class="calendar" id="calendar"></div>
+  <div class="muted" id="calHint">Clique em um dia pra ver detalhes.</div>
+</div>
+
+<div class="panel">
+  <h3>Gráfico (últimos 30 dias)</h3>
+  <canvas id="studyChart" height="120"></canvas>
+</div>
+
+
+            <div class="progress-grid">
+              <div class="panel">
+                <h3>Resumo</h3>
+                <div id="summaryBox" class="summary"></div>
+              </div>
+
+              <div class="panel">
+                <h3>Pendências</h3>
+                <div id="pendingBox" class="listbox"></div>
+              </div>
+
+              <div class="panel">
+                <h3>Concluídas</h3>
+                <div id="doneBox" class="listbox"></div>
+              </div>
+
+              <div class="panel">
+                <h3>Anotações</h3>
+                <div id="notesBox" class="listbox"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA CONFIGURAÇÕES -->
+        <div class="tab-content" id="config">
+          <div class="card">
+            <h2>Configurações</h2>
+
+            <div class="settings-grid">
+              <div class="panel">
+                <h3>Meta semanal</h3>
+                <p class="muted">Define quantas tarefas você quer concluir por semana.</p>
+
+                <div class="settings-row">
+                  <input id="weeklyGoalInput" type="number" min="0" placeholder="Ex: 20" />
+                  <button id="saveWeeklyGoalBtn" class="btn-mini" type="button">Salvar</button>
+                </div>
+
+                <div id="weeklyGoalStatus" class="muted"></div>
+              </div>
+
+              <div class="panel">
+                <h3>Backup</h3>
+                <p class="muted">Exporte seus dados pra salvar no PC/celular, ou importe depois.</p>
+
+                <div class="settings-row">
+                  <button id="exportBackupBtn" class="btn-mini" type="button">Exportar backup (.json)</button>
+                </div>
+
+                <div class="settings-row">
+                  <input id="importBackupFile" type="file" accept="application/json" />
+                  <button id="importBackupBtn" class="btn-mini" type="button">Importar</button>
+                </div>
+
+                <div id="backupStatus" class="muted"></div>
+              </div>
+
+              <div class="panel">
+                <h3>Reset</h3>
+                <p class="muted">Use com cuidado. Isso não tem “desfazer”.</p>
+
+                <div class="settings-row">
+                  <button id="resetProgressBtn" class="btn-mini danger" type="button">Resetar progresso</button>
+                  <button id="resetAllBtn" class="btn-mini danger" type="button">Resetar tudo</button>
+                </div>
+
+                <div id="resetStatus" class="muted"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+  </div>
+
+  <!-- JS (1x só, ordem certa) -->
+<script src="js/storage.js"></script>
+<script src="js/state.js"></script>
+<script src="js/data.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/features.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
